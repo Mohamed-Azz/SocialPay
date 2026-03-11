@@ -1,25 +1,20 @@
 <?php
+class Employee {
+    private $db;
 
-namespace App\Models;
+    public function __construct() {
+        $this->db = Database::getInstance();
+    }
 
-use Illuminate\Database\Eloquent\Model;
+    public function verify($ssn, $dob) {
+        // Convert ddmmyyyy to YYYY-MM-DD
+        $day = substr($dob, 0, 2);
+        $month = substr($dob, 2, 2);
+        $year = substr($dob, 4, 4);
+        $formatted_dob = "$year-$month-$day";
 
-class Employee extends Model
-{
-    protected $fillable = [
-        'structure', 'photo', 'type', 'nin', 'matricule', 'nom', 'prenom',
-        'nom_ar', 'prenom_ar', 'nom_jeune_fille', 'nom_jeune_fille_ar',
-        'civilite', 'presume', 'date_naissance', 'lieu_naissance',
-        'lieu_naissance_ar', 'situation_familiale', 'nationalite',
-        'service_national', 'groupe_sanguin', 'prenom_pere', 'prenom_pere_ar',
-        'nom_mere', 'nom_mere_ar', 'prenom_mere', 'prenom_mere_ar',
-        'date_recrutement', 'corps', 'grade', 'filiere', 'date_installation',
-        'ssn', 'date_affiliation', 'type_compte', 'num_compte', 'date_effet',
-        'echelon', 'categorie', 'position', 'rfid_card'
-    ];
-
-    public function requests()
-    {
-        return $this->hasMany(Request::class);
+        $stmt = $this->db->prepare("SELECT * FROM employees WHERE ssn = ? AND date_naissance = ?");
+        $stmt->execute([$ssn, $formatted_dob]);
+        return $stmt->fetch();
     }
 }

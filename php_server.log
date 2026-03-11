@@ -1,0 +1,64 @@
+[Wed Mar 11 13:39:46 2026] PHP 8.3.6 Development Server (http://localhost:8080) started
+[Wed Mar 11 13:40:12 2026] [::1]:56478 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56478 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56478 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56484 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56484 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56484 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56490 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56490 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56490 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56494 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56494 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56494 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56508 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56508 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56508 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56520 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56520 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56520 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56526 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56526 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56526 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56534 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56534 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56534 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56536 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56536 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56536 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56538 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56538 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56538 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56548 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56548 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56548 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56558 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56558 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56558 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56562 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56562 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56562 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56572 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56572 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56572 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56580 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56580 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56580 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56594 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56594 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56594 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56604 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56604 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56604 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56610 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56610 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56610 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56614 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56614 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56614 Closing
+[Wed Mar 11 13:40:12 2026] [::1]:56624 Accepted
+[Wed Mar 11 13:40:12 2026] [::1]:56624 [302]: GET /portal/login
+[Wed Mar 11 13:40:12 2026] [::1]:56624 Closing
+[Wed Mar 11 13:40:26 2026] [::1]:33294 Accepted
+[Wed Mar 11 13:40:26 2026] [::1]:33294 [200]: GET /portal/login
+[Wed Mar 11 13:40:26 2026] [::1]:33294 Closing

@@ -1,0 +1,38 @@
+
+   INFO  Server running on [http://127.0.0.1:8000].
+
+  Press Ctrl+C to stop the server
+
+  2026-03-11 12:22:06 /portal/login ................................. ~ ثانية
+  2026-03-11 12:22:34 /admin/employees ............................. ~ 0.16ms
+PHP Fatal error:  Uncaught ErrorException: include(/app/vendor/composer/../nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php): Failed to open stream: No such file or directory in /app/vendor/composer/ClassLoader.php:576
+Stack trace:
+#0 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /app/vendor/composer/ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+#2 /app/vendor/composer/ClassLoader.php(576): include('...')
+#3 /app/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}()
+#4 /app/vendor/nunomaduro/collision/src/Adapters/Laravel/CollisionServiceProvider.php(66): Composer\Autoload\ClassLoader->loadClass()
+#5 /app/vendor/laravel/framework/src/Illuminate/Container/Container.php(1115): NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider->NunoMaduro\Collision\Adapters\Laravel\{closure}()
+#6 /app/vendor/laravel/framework/src/Illuminate/Container/Container.php(933): Illuminate\Container\Container->build()
+#7 /app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve()
+#8 /app/vendor/laravel/framework/src/Illuminate/Container/Container.php(864): Illuminate\Foundation\Application->resolve()
+#9 /app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make()
+#10 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(291): Illuminate\Foundation\Application->make()
+#11 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(210): Illuminate\Foundation\Bootstrap\HandleExceptions->getExceptionHandler()
+#12 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(192): Illuminate\Foundation\Bootstrap\HandleExceptions->renderForConsole()
+#13 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException()
+#14 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+#15 {main}
+  thrown in /app/vendor/composer/ClassLoader.php on line 576
+PHP Fatal error:  Uncaught ErrorException: include(/app/vendor/composer/../symfony/error-handler/Error/FatalError.php): Failed to open stream: No such file or directory in /app/vendor/composer/ClassLoader.php:576
+Stack trace:
+#0 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /app/vendor/composer/ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+#2 /app/vendor/composer/ClassLoader.php(576): include('...')
+#3 /app/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}()
+#4 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(247): Composer\Autoload\ClassLoader->loadClass()
+#5 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(234): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalErrorFromPhpError()
+#6 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#7 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+#8 {main}
+  thrown in /app/vendor/composer/ClassLoader.php on line 576
