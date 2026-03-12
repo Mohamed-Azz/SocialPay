@@ -10,9 +10,9 @@
         <div class="container">
             <a class="navbar-brand" href="#">لوحة تحكم Admin</a>
             <div class="navbar-nav">
-                <a class="nav-link active" href="/admin/employees">العمال</a>
-                <a class="nav-link" href="/admin/users">المستخدمين</a>
-                <a class="nav-link" href="/auth/logout">خروج</a>
+                <a class="nav-link active" href="<?= URLROOT; ?>/admin/employees">العمال</a>
+                <a class="nav-link" href="<?= URLROOT; ?>/admin/users">المستخدمين</a>
+                <a class="nav-link" href="<?= URLROOT; ?>/auth/logout">خروج</a>
             </div>
         </div>
     </nav>
@@ -20,7 +20,7 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between mb-3">
             <h3>قائمة العمال</h3>
-            <form action="/admin/import" method="POST" enctype="multipart/form-data" class="d-flex">
+            <form action="<?= URLROOT; ?>/admin/import" method="POST" enctype="multipart/form-data" class="d-flex">
                 <input type="file" name="file" class="form-control me-2" required>
                 <button type="submit" class="btn btn-success">استيراد CSV</button>
             </form>

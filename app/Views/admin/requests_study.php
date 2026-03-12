@@ -22,10 +22,10 @@
                 <tr>
                     <td><?= $r['nom_ar']; ?></td>
                     <td><?= $r['grant_name']; ?></td>
-                    <td><a href="/<?= $r['file_path']; ?>" class="btn btn-sm btn-info" target="_blank">فتح PDF</a></td>
+                    <td><a href="<?= URLROOT; ?>/<?= $r['file_path']; ?>" class="btn btn-sm btn-info" target="_blank">فتح PDF</a></td>
                     <td>
                         <?php if($_SESSION['role'] == 'chairman' && $r['status'] == 'pending'): ?>
-                        <form action="/committee/process" method="POST" class="d-inline">
+                        <form action="<?= URLROOT; ?>/committee/process" method="POST" class="d-inline">
                             <input type="hidden" name="request_id" value="<?= $r['id']; ?>">
                             <select name="status" class="form-select form-select-sm d-inline-block w-auto">
                                 <option value="beneficiary">موافقة</option>

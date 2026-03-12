@@ -10,7 +10,7 @@
         <div class="container">
             <span class="navbar-brand">مرحباً <?= $employee['nom_ar']; ?></span>
             <div class="navbar-nav">
-                <a class="nav-link" href="/portal/logout">خروج</a>
+                <a class="nav-link" href="<?= URLROOT; ?>/portal/logout">خروج</a>
             </div>
         </div>
     </nav>
@@ -41,7 +41,7 @@
                         <!-- Modal -->
                         <div class="modal fade" id="modal<?= $g['id']; ?>" tabindex="-1">
                             <div class="modal-dialog">
-                                <form action="/portalDashboard/submitRequest" method="POST" enctype="multipart/form-data">
+                                <form action="<?= URLROOT; ?>/portalDashboard/submitRequest" method="POST" enctype="multipart/form-data">
                                     <input type="hidden" name="grant_id" value="<?= $g['id']; ?>">
                                     <div class="modal-content">
                                         <div class="modal-header">
