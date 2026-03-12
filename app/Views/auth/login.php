@@ -20,8 +20,12 @@
                 <label class="form-label">كلمة المرور</label>
                 <input type="password" name="password" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">دخول</button>
+            <button type="submit" class="btn btn-primary w-100">دخول الإدارة</button>
         </form>
+        <hr>
+        <div class="text-center">
+            <a href="<?= URLROOT; ?>/portal/login" class="btn btn-outline-light btn-sm text-dark">العودة لدخول الموظفين</a>
+        </div>
     </div>
 </body>
 </html>

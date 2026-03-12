@@ -20,8 +20,12 @@
                 <label class="form-label">تاريخ الميلاد (مثال: 10021999)</label>
                 <input type="text" name="dob" class="form-control" maxlength="8" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">دخول</button>
+            <button type="submit" class="btn btn-primary w-100">دخول الموظف</button>
         </form>
+        <hr>
+        <div class="text-center">
+            <a href="<?= URLROOT; ?>/auth/login" class="btn btn-outline-secondary btn-sm">دخول الإدارة (اللجنة / التسيير)</a>
+        </div>
     </div>
 </body>
 </html>
