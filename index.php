@@ -4,17 +4,8 @@ require_once 'config/database.php';
 
 session_start();
 
-$requestUri = $_SERVER['REQUEST_URI'];
-$basePath = ''; // Adjust if needed
-$url = str_replace($basePath, '', $requestUri);
-$url = parse_url($url, PHP_URL_PATH);
+$url = isset($_GET['url']) ? $_GET['url'] : 'home';
 $url = rtrim($url, '/');
-$url = ltrim($url, '/');
-
-if (empty($url)) {
-    $url = 'home';
-}
-
 $url = explode('/', $url);
 
 $controllerName = ucfirst($url[0]) . 'Controller';
