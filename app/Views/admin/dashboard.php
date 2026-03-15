@@ -33,6 +33,7 @@
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar Navigation -->
+
         <aside class="w-72 bg-white dark:bg-stone-900 border-l border-slate-200 dark:border-stone-800 flex flex-col h-full shadow-sm">
             <div class="p-6 border-b border-slate-200 dark:border-stone-800 flex items-center gap-3">
                 <div class="bg-primary p-2 rounded-lg text-white">
@@ -44,13 +45,21 @@
                 </div>
             </div>
             <nav class="flex-1 overflow-y-auto p-4 space-y-2">
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium" href="<?= URLROOT; ?>/admin/dashboard">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/dashboard">
                     <span class="material-symbols-outlined">dashboard</span>
                     <span>لوحة التحكم الرئيسية</span>
                 </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/employees">
                     <span class="material-symbols-outlined">group</span>
                     <span>إدارة الموظفين</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/mandates">
+                    <span class="material-symbols-outlined">event_note</span>
+                    <span>إدارة العهد</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/grants">
+                    <span class="material-symbols-outlined">account_balance</span>
+                    <span>إدارة المنح</span>
                 </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/users">
                     <span class="material-symbols-outlined">manage_accounts</span>
@@ -64,6 +73,14 @@
                     <span class="material-symbols-outlined">account_balance_wallet</span>
                     <span>المدفوعات</span>
                 </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/committeeDashboard/viewOperations">
+                    <span class="material-symbols-outlined">history</span>
+                    <span>سجل العمليات</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structureDashboard/deductions">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    <span>الاقتطاعات الشهرية</span>
+                </a>
                 <div class="pt-4 mt-4 border-t border-slate-200 dark:border-stone-800">
                     <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/auth/logout">
                         <span class="material-symbols-outlined text-red-500">logout</span>
@@ -72,6 +89,7 @@
                 </div>
             </nav>
         </aside>
+
 
         <!-- Main Content Area -->
         <main class="flex-1 flex flex-col min-w-0 overflow-hidden">

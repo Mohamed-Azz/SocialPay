@@ -68,19 +68,29 @@ class AdminController {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $stmt = $db->prepare("INSERT INTO employees (structure, matricule, nom, prenom, nom_ar, prenom_ar, ssn, date_naissance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([
-                    $data[1] ?? '',
-                    $data[5] ?? '',
-                    $data[6] ?? '',
-                    $data[7] ?? '',
-                    $data[8] ?? '',
-                    $data[9] ?? '',
-                    $data[32] ?? '',
+                    $this->convertEncoding($data[1] ?? ''),
+                    $this->convertEncoding($data[5] ?? ''),
+                    $this->convertEncoding($data[6] ?? ''),
+                    $this->convertEncoding($data[7] ?? ''),
+                    $this->convertEncoding($data[8] ?? ''),
+                    $this->convertEncoding($data[9] ?? ''),
+                    $this->convertEncoding($data[32] ?? ''),
                     $this->formatDate($data[14] ?? null)
                 ]);
             }
             fclose($handle);
             header("Location: /admin/employees");
         }
+    }
+
+    private function convertEncoding($text) {
+        if (empty($text)) return $text;
+        // Try to handle CP1256 if needed, or just ensure UTF-8
+        $encoding = mb_detect_encoding($text, ['UTF-8', 'Windows-1256', 'ISO-8859-1'], true);
+        if ($encoding && $encoding != 'UTF-8') {
+            return mb_convert_encoding($text, 'UTF-8', $encoding);
+        }
+        return $text;
     }
 
     private function formatDate($date) {

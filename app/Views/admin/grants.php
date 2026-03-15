@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>سجل العمليات</title>
+    <title>إدارة المنح</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;family=Noto+Sans+Arabic:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -57,7 +57,7 @@
                     <span class="material-symbols-outlined">event_note</span>
                     <span>إدارة العهد</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/grants">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/grants">
                     <span class="material-symbols-outlined">account_balance</span>
                     <span>إدارة المنح</span>
                 </a>
@@ -73,7 +73,7 @@
                     <span class="material-symbols-outlined">account_balance_wallet</span>
                     <span>المدفوعات</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/committeeDashboard/viewOperations">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/committeeDashboard/viewOperations">
                     <span class="material-symbols-outlined">history</span>
                     <span>سجل العمليات</span>
                 </a>
@@ -93,62 +93,29 @@
 
         <!-- Main Content Area -->
         <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
-            <header class="h-20 bg-white dark:bg-stone-900 border-b border-slate-200 dark:border-stone-800 px-8 flex items-center justify-between">
-                <h2 class="text-xl font-bold">سجل العمليات المالية</h2>
-                <div class="flex gap-2">
-                    <button class="bg-white border rounded-xl px-4 py-2 text-sm font-bold flex items-center gap-2 hover:bg-slate-50">
-                        <span class="material-symbols-outlined text-sm">print</span>
-                        <span>طباعة السجل</span>
-                    </button>
-                </div>
+            <header class="h-16 bg-white dark:bg-stone-900 border-b border-slate-200 dark:border-stone-800 flex items-center justify-between px-8 z-10 shadow-sm">
+                <h2 class="text-xl font-bold">إدارة المنح والسلف</h2>
             </header>
 
             <div class="flex-1 overflow-y-auto p-8 space-y-8">
-                <!-- Advanced Search Section -->
-                <div class="bg-white dark:bg-stone-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-stone-800 space-y-4">
-                    <div class="flex items-center gap-2 mb-2 text-slate-700 dark:text-slate-200 font-bold">
-                        <span class="material-symbols-outlined text-primary">filter_alt</span>
-                        <span>بحث متقدم</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-                        <div class="space-y-1">
-                            <label class="text-xs text-slate-500 font-medium px-1">بحث نصي</label>
-                            <input type="text" placeholder="اسم الموظف أو المرجع..." class="w-full px-4 py-2 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs text-slate-500 font-medium px-1">من تاريخ</label>
-                            <input type="date" class="w-full px-4 py-2 rounded-xl border-slate-200 text-sm">
-                        </div>
-                        <button class="bg-primary text-white py-2 rounded-xl font-bold text-sm hover:bg-primary/90 transition-all">تطبيق الفلتر</button>
-                    </div>
-                </div>
-
                 <div class="bg-white dark:bg-stone-900 rounded-2xl shadow-sm border border-slate-100 dark:border-stone-800 overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-right">
-                            <thead class="bg-slate-50 dark:bg-stone-800/50 text-slate-500 text-sm">
+                            <thead class="bg-slate-50 dark:bg-stone-800/50 text-slate-500 text-sm uppercase">
                                 <tr>
-                                    <th class="px-6 py-4 font-semibold">الموظف</th>
-                                    <th class="px-6 py-4 font-semibold">المبلغ (دج)</th>
-                                    <th class="px-6 py-4 font-semibold">الرسوم البنكية</th>
-                                    <th class="px-6 py-4 font-semibold">التاريخ</th>
-                                    <th class="px-6 py-4 font-semibold">المرجع</th>
-                                    <th class="px-6 py-4 font-semibold">الإجراءات</th>
+                                    <th class="px-6 py-4 font-semibold">المنحة</th>
+                                    <th class="px-6 py-4 font-semibold">الباب</th>
+                                    <th class="px-6 py-4 font-semibold">المبلغ</th>
+                                    <th class="px-6 py-4 font-semibold">الأقساط</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-stone-800">
-                                <?php foreach($payments as $p): ?>
+                                <?php foreach($grants as $g): ?>
                                 <tr class="hover:bg-slate-50/50 dark:hover:bg-stone-800/30">
-                                    <td class="px-6 py-4 font-bold text-sm"><?= $p['nom_ar']; ?></td>
-                                    <td class="px-6 py-4 text-sm"><?= number_format($p['amount'], 2); ?></td>
-                                    <td class="px-6 py-4 text-sm text-slate-500"><?= number_format($p['bank_fees'], 2); ?></td>
-                                    <td class="px-6 py-4 text-sm text-slate-400"><?= $p['payment_date']; ?></td>
-                                    <td class="px-6 py-4 text-sm font-mono"><?= $p['reference_number']; ?></td>
-                                    <td class="px-6 py-4">
-                                        <a href="<?= URLROOT; ?>/structureDashboard/printOrder?id=<?= $p['id']; ?>" target="_blank" class="p-2 text-slate-400 hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined">print</span>
-                                        </a>
-                                    </td>
+                                    <td class="px-6 py-4 font-bold text-sm"><?= $g['name']; ?></td>
+                                    <td class="px-6 py-4 text-sm text-slate-500"><?= $g['bab_name']; ?></td>
+                                    <td class="px-6 py-4 font-bold text-sm"><?= number_format($g['amount'], 2); ?> دج</td>
+                                    <td class="px-6 py-4 text-sm"><?= $g['installments_count']; ?> شهر</td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
