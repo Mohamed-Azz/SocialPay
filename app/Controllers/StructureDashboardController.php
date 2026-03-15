@@ -32,7 +32,7 @@ class StructureDashboardController extends StructureController {
                 $db->rollBack();
             }
         }
-        header("Location: /structureDashboard/deductions");
+        header("Location: " . URLROOT . "/structureDashboard/deductions");
     }
 
     public function printOrder() {

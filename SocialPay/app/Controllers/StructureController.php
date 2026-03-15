@@ -2,7 +2,7 @@
 class StructureController {
     public function __construct() {
         if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['accountant', 'manager', 'admin'])) {
-            header("Location: /auth/login");
+            header("Location: " . URLROOT . "/auth/login");
             exit();
         }
     }
@@ -49,7 +49,7 @@ class StructureController {
                 }
 
                 $db->commit();
-                header("Location: /structure/payments");
+                header("Location: " . URLROOT . "/structure/payments");
             } catch (Exception $e) {
                 $db->rollBack();
                 die($e->getMessage());

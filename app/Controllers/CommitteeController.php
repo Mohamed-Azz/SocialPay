@@ -2,7 +2,7 @@
 class CommitteeController {
     public function __construct() {
         if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['chairman', 'member', 'admin'])) {
-            header("Location: /auth/login");
+            header("Location: " . URLROOT . "/auth/login");
             exit();
         }
     }
@@ -24,7 +24,7 @@ class CommitteeController {
             $stmt = $db->prepare("UPDATE requests SET status = ?, rejection_reason = ? WHERE id = ?");
             $stmt->execute([$status, $reason, $requestId]);
 
-            header("Location: /committee/requests");
+            header("Location: " . URLROOT . "/committee/requests");
             exit();
         }
     }

@@ -18,11 +18,11 @@ class AuthController {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
 
-                header("Location: /admin/dashboard");
+                header("Location: " . URLROOT . "/admin/dashboard");
                 exit();
             } else {
                 $_SESSION['error'] = "بيانات غير صحيحة أو حساب معطل";
-                header("Location: /auth/login");
+                header("Location: " . URLROOT . "/auth/login");
                 exit();
             }
         }
@@ -30,7 +30,7 @@ class AuthController {
 
     public function logout() {
         session_destroy();
-        header("Location: /auth/login");
+        header("Location: " . URLROOT . "/auth/login");
         exit();
     }
 }

@@ -5,7 +5,7 @@ require_once 'app/Controllers/PortalController.php';
 class PortalDashboardController extends PortalController {
     public function index() {
         if (!isset($_SESSION['employee_id'])) {
-            header("Location: /portal/login");
+            header("Location: " . URLROOT . "/portal/login");
             exit();
         }
 
@@ -54,7 +54,7 @@ class PortalDashboardController extends PortalController {
                 $stmt->execute([$employeeId]);
                 if ($stmt->fetchColumn() > 0) {
                     $_SESSION['error'] = "لا يمكنك طلب سلفة جديدة حتى تسديد السابقة";
-                    header("Location: /portal/dashboard");
+                    header("Location: " . URLROOT . "/portal/dashboard");
                     exit();
                 }
             }
@@ -70,7 +70,7 @@ class PortalDashboardController extends PortalController {
             $stmt->execute([$employeeId, $grantId, $mandate['id'], $filePath]);
 
             $_SESSION['success'] = "تم تقديم الطلب بنجاح";
-            header("Location: /portal/dashboard");
+            header("Location: " . URLROOT . "/portal/dashboard");
             exit();
         }
     }

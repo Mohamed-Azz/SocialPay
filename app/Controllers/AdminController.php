@@ -5,7 +5,7 @@ require_once 'app/Models/User.php';
 class AdminController {
     public function __construct() {
         if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
-            header("Location: /auth/login");
+            header("Location: " . URLROOT . "/auth/login");
             exit();
         }
     }
@@ -34,7 +34,7 @@ class AdminController {
             $stmt = $db->prepare("UPDATE users SET is_active = NOT is_active WHERE id = ?");
             $stmt->execute([$_GET['id']]);
         }
-        header("Location: /admin/users");
+        header("Location: " . URLROOT . "/admin/users");
     }
 
     public function employees() {
@@ -79,7 +79,7 @@ class AdminController {
                 ]);
             }
             fclose($handle);
-            header("Location: /admin/employees");
+            header("Location: " . URLROOT . "/admin/employees");
         }
     }
 

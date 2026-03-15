@@ -16,11 +16,11 @@ class PortalController {
 
             if ($employee) {
                 $_SESSION['employee_id'] = $employee['id'];
-                header("Location: /portal/dashboard");
+                header("Location: " . URLROOT . "/portal/dashboard");
                 exit();
             } else {
                 $_SESSION['error'] = "بيانات غير صحيحة";
-                header("Location: /portal/login");
+                header("Location: " . URLROOT . "/portal/login");
                 exit();
             }
         }
@@ -28,7 +28,7 @@ class PortalController {
 
     public function dashboard() {
         if (!isset($_SESSION['employee_id'])) {
-            header("Location: /portal/login");
+            header("Location: " . URLROOT . "/portal/login");
             exit();
         }
         // ... Load dashboard logic
@@ -37,7 +37,7 @@ class PortalController {
 
     public function logout() {
         unset($_SESSION['employee_id']);
-        header("Location: /portal/login");
+        header("Location: " . URLROOT . "/portal/login");
         exit();
     }
 }
