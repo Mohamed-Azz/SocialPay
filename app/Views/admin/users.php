@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>إدارة الموظفين</title>
+    <title>إدارة المستخدمين</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;family=Noto+Sans+Arabic:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -48,11 +48,11 @@
                     <span class="material-symbols-outlined">dashboard</span>
                     <span>لوحة التحكم الرئيسية</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium" href="<?= URLROOT; ?>/admin/employees">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/employees">
                     <span class="material-symbols-outlined">group</span>
                     <span>إدارة الموظفين</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/admin/users">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium" href="<?= URLROOT; ?>/admin/users">
                     <span class="material-symbols-outlined">manage_accounts</span>
                     <span>إدارة المستخدمين</span>
                 </a>
@@ -78,75 +78,56 @@
             <!-- Header -->
             <header class="h-16 bg-white dark:bg-stone-900 border-b border-slate-200 dark:border-stone-800 flex items-center justify-between px-8 z-10 shadow-sm">
                 <div class="flex items-center gap-4 flex-1">
-                    <div class="relative w-full max-w-md">
-                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                        <input class="w-full pr-10 pl-4 py-2 rounded-xl bg-slate-100 dark:bg-stone-800 border-none focus:ring-2 focus:ring-primary/50 text-sm" placeholder="بحث عن موظف..." type="text"/>
-                    </div>
+                    <h2 class="text-xl font-bold">إدارة حسابات المستخدمين</h2>
                 </div>
             </header>
 
             <!-- Scrollable Content -->
             <div class="flex-1 overflow-y-auto p-8 space-y-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-3xl font-black text-slate-900 dark:text-white">إدارة الموظفين والعمال</h2>
-                        <p class="text-slate-500 dark:text-slate-400 mt-1">تتبع، إضافة، وإدارة ملفات الموظفين</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <form action="<?= URLROOT; ?>/admin/import" method="POST" enctype="multipart/form-data" class="flex gap-2">
-                            <input type="file" name="file" class="hidden" id="importFile" onchange="this.form.submit()" required>
-                            <label for="importFile" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-stone-900 border border-slate-200 dark:border-stone-800 hover:bg-slate-50 cursor-pointer transition-colors font-semibold text-sm text-green-600">
-                                <span class="material-symbols-outlined">upload_file</span>
-                                <span>رفع CSV</span>
-                            </label>
-                        </form>
-                        <button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white hover:bg-primary/90 transition-colors font-bold shadow-lg shadow-primary/20 text-sm">
-                            <span class="material-symbols-outlined">person_add</span>
-                            <span>إضافة موظف</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Employees Table -->
                 <div class="bg-white dark:bg-stone-900 rounded-2xl shadow-sm border border-slate-100 dark:border-stone-800 overflow-hidden">
                     <div class="p-6 border-b border-slate-100 dark:border-stone-800 flex justify-between items-center">
-                        <h3 class="text-lg font-bold">قائمة الموظفين</h3>
-                        <div class="flex gap-2">
-                            <button class="p-2 hover:bg-slate-50 dark:hover:bg-stone-800 rounded-lg text-slate-400">
-                                <span class="material-symbols-outlined">filter_list</span>
-                            </button>
-                        </div>
+                        <h3 class="text-lg font-bold">قائمة المستخدمين</h3>
+                        <button class="bg-primary text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-primary/20">إضافة مستخدم جديد</button>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-right">
                             <thead>
                                 <tr class="bg-slate-50 dark:bg-stone-800/50 text-slate-500 dark:text-slate-400 text-sm uppercase">
-                                    <th class="px-6 py-4 font-semibold">الموظف</th>
-                                    <th class="px-6 py-4 font-semibold">الماتريكول</th>
-                                    <th class="px-6 py-4 font-semibold">رقم الضمان</th>
-                                    <th class="px-6 py-4 font-semibold">الهيكل</th>
+                                    <th class="px-6 py-4 font-semibold">المستخدم</th>
+                                    <th class="px-6 py-4 font-semibold">البريد الإلكتروني</th>
+                                    <th class="px-6 py-4 font-semibold">الدور</th>
+                                    <th class="px-6 py-4 font-semibold">الحالة</th>
                                     <th class="px-6 py-4 font-semibold">الإجراءات</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-stone-800">
-                                <?php foreach($employees as $emp): ?>
+                                <?php foreach($users as $user): ?>
                                 <tr class="hover:bg-slate-50/50 dark:hover:bg-stone-800/30">
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">
-                                            <div class="size-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
-                                                <?= mb_substr($emp['nom_ar'], 0, 1) . ' ' . mb_substr($emp['prenom_ar'], 0, 1); ?>
+                                            <div class="size-10 rounded-full bg-slate-200 dark:bg-stone-700 flex items-center justify-center text-slate-500">
+                                                <span class="material-symbols-outlined">person</span>
                                             </div>
-                                            <div>
-                                                <p class="font-bold text-sm"><?= $emp['nom_ar'] . ' ' . $emp['prenom_ar']; ?></p>
-                                                <p class="text-xs text-slate-400"><?= $emp['position'] ?? 'موظف'; ?></p>
-                                            </div>
+                                            <p class="font-bold text-sm"><?= $user['name']; ?></p>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm font-medium"><?= $emp['matricule']; ?></td>
-                                    <td class="px-6 py-4 text-sm"><?= $emp['ssn']; ?></td>
-                                    <td class="px-6 py-4 text-sm font-bold text-slate-600"><?= $emp['structure']; ?></td>
+                                    <td class="px-6 py-4 text-sm"><?= $user['email']; ?></td>
+                                    <td class="px-6 py-4 text-sm font-medium text-slate-600"><?= $user['role']; ?></td>
                                     <td class="px-6 py-4">
-                                        <button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                            <?= $user['is_active'] ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
+                                            <?= $user['is_active'] ? 'نشط' : 'معطل'; ?>
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-2">
+                                            <a href="<?= URLROOT; ?>/admin/toggleUser?id=<?= $user['id']; ?>" class="p-2 hover:bg-slate-100 dark:hover:bg-stone-800 rounded-lg text-slate-400 hover:text-primary transition-colors">
+                                                <span class="material-symbols-outlined"><?= $user['is_active'] ? 'block' : 'check_circle'; ?></span>
+                                            </a>
+                                            <button class="p-2 hover:bg-slate-100 dark:hover:bg-stone-800 rounded-lg text-slate-400 hover:text-primary transition-colors">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
