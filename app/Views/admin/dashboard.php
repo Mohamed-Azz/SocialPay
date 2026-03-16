@@ -35,6 +35,7 @@
         <!-- Sidebar Navigation -->
 
 
+
         <aside class="w-72 bg-white dark:bg-stone-900 border-l border-slate-200 dark:border-stone-800 flex flex-col h-full shadow-sm">
             <div class="p-6 border-b border-slate-200 dark:border-stone-800 flex items-center gap-3">
                 <div class="bg-primary p-2 rounded-lg text-white">
@@ -90,6 +91,7 @@
                 </div>
             </nav>
         </aside>
+
 
 
 

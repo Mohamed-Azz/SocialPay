@@ -35,6 +35,7 @@
         <!-- Sidebar Navigation -->
 
 
+
         <aside class="w-72 bg-white dark:bg-stone-900 border-l border-slate-200 dark:border-stone-800 flex flex-col h-full shadow-sm">
             <div class="p-6 border-b border-slate-200 dark:border-stone-800 flex items-center gap-3">
                 <div class="bg-primary p-2 rounded-lg text-white">
@@ -93,6 +94,7 @@
 
 
 
+
         <!-- Main Content Area -->
         <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
             <!-- Header -->
@@ -114,10 +116,10 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <form action="<?= URLROOT; ?>/admin/import" method="POST" enctype="multipart/form-data" class="flex gap-2">
-                            <input type="file" name="file" class="hidden" id="importFile" onchange="this.form.submit()" required>
+                            <input type="file" name="file" class="hidden" id="importFile" accept=".xlsx, .xls, .csv" onchange="this.form.submit()" required>
                             <label for="importFile" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-stone-900 border border-slate-200 dark:border-stone-800 hover:bg-slate-50 cursor-pointer transition-colors font-semibold text-sm text-green-600">
                                 <span class="material-symbols-outlined">upload_file</span>
-                                <span>رفع CSV</span>
+                                <span>استيراد ملف (XLSX/CSV)</span>
                             </label>
                         </form>
                         <button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white hover:bg-primary/90 transition-colors font-bold shadow-lg shadow-primary/20 text-sm">

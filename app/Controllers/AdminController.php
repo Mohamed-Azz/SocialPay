@@ -2,6 +2,8 @@
 require_once 'app/Models/Employee.php';
 require_once 'app/Models/User.php';
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class AdminController {
     public function __construct() {
         if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
@@ -62,39 +64,83 @@ class AdminController {
 
     public function import() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['file'])) {
-            $handle = fopen($_FILES['file']['tmp_name'], "r");
+            $filePath = $_FILES['file']['tmp_name'];
             $db = Database::getInstance();
-            fgetcsv($handle);
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                $stmt = $db->prepare("INSERT INTO employees (structure, matricule, nom, prenom, nom_ar, prenom_ar, ssn, date_naissance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([
-                    $this->convertEncoding($data[1] ?? ''),
-                    $this->convertEncoding($data[5] ?? ''),
-                    $this->convertEncoding($data[6] ?? ''),
-                    $this->convertEncoding($data[7] ?? ''),
-                    $this->convertEncoding($data[8] ?? ''),
-                    $this->convertEncoding($data[9] ?? ''),
-                    $this->convertEncoding($data[32] ?? ''),
-                    $this->formatDate($data[14] ?? null)
-                ]);
+
+            try {
+                $spreadsheet = IOFactory::load($filePath);
+                $worksheet = $spreadsheet->getActiveSheet();
+                $rows = $worksheet->toArray();
+
+                if (count($rows) > 0) {
+                    $header = array_shift($rows);
+                    $mapping = $this->getMapping($header);
+
+                    foreach ($rows as $data) {
+                        $matricule = trim($data[$mapping['matricule']] ?? '');
+                        $ssn = trim($data[$mapping['ssn']] ?? '');
+
+                        if (empty($matricule)) continue;
+
+                        // Handle unique constraint for SSN (allow multiple NULLs but not multiple empty strings)
+                        $ssnValue = !empty($ssn) ? $ssn : null;
+
+                        $stmt = $db->prepare("INSERT INTO employees (structure, matricule, nom, prenom, nom_ar, prenom_ar, ssn, date_naissance) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE structure=VALUES(structure), nom=VALUES(nom), prenom=VALUES(prenom), nom_ar=VALUES(nom_ar), prenom_ar=VALUES(prenom_ar), ssn=VALUES(ssn), date_naissance=VALUES(date_naissance)");
+
+                        $stmt->execute([
+                            $data[$mapping['structure']] ?? '',
+                            $matricule,
+                            $data[$mapping['nom']] ?? '',
+                            $data[$mapping['prenom']] ?? '',
+                            $data[$mapping['nom_ar']] ?? '',
+                            $data[$mapping['prenom_ar']] ?? '',
+                            $ssnValue,
+                            $this->formatDate($data[$mapping['date_naissance']] ?? null)
+                        ]);
+                    }
+                    $_SESSION['success'] = "تم استيراد البيانات بنجاح";
+                }
+            } catch (Exception $e) {
+                $_SESSION['error'] = "خطأ في معالجة الملف: " . $e->getMessage();
             }
-            fclose($handle);
+
             header("Location: " . URLROOT . "/admin/employees");
+            exit();
         }
     }
 
-    private function convertEncoding($text) {
-        if (empty($text)) return $text;
-        // Try to handle CP1256 if needed, or just ensure UTF-8
-        $encoding = mb_detect_encoding($text, ['UTF-8', 'Windows-1256', 'ISO-8859-1'], true);
-        if ($encoding && $encoding != 'UTF-8') {
-            return mb_convert_encoding($text, 'UTF-8', $encoding);
+    private function getMapping($header) {
+        $mapping = [
+            'structure' => 1,
+            'matricule' => 5,
+            'nom' => 6,
+            'prenom' => 7,
+            'nom_ar' => 8,
+            'prenom_ar' => 9,
+            'ssn' => 32,
+            'date_naissance' => 14
+        ];
+
+        foreach ($header as $i => $col) {
+            if (!$col) continue;
+            $col = trim($col);
+            if ($col == 'الماتريكول' || $col == 'Matricule' || $col == 'matricule') $mapping['matricule'] = $i;
+            if ($col == 'الاسم' || $col == 'Nom' || $col == 'nom') $mapping['nom_ar'] = $i;
+            if ($col == 'اللقب' || $col == 'Prenom' || $col == 'prenom') $mapping['prenom_ar'] = $i;
+            if ($col == 'رقم الضمان' || $col == 'SSN' || $col == 'ssn') $mapping['ssn'] = $i;
+            if ($col == 'الهيكل' || $col == 'Structure' || $col == 'structure') $mapping['structure'] = $i;
+            if ($col == 'تاريخ الميلاد' || $col == 'Date Naissance' || $col == 'date_naissance') $mapping['date_naissance'] = $i;
         }
-        return $text;
+
+        return $mapping;
     }
 
     private function formatDate($date) {
         if (!$date) return null;
-        return date('Y-m-d', strtotime($date));
+        if (is_numeric($date) && $date > 10000) {
+            return date('Y-m-d', ($date - 25569) * 86400);
+        }
+        $ts = strtotime($date);
+        return $ts ? date('Y-m-d', $ts) : null;
     }
 }
