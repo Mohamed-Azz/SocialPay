@@ -36,13 +36,14 @@
 
 
 
+
         <aside class="w-72 bg-white dark:bg-stone-900 border-l border-slate-200 dark:border-stone-800 flex flex-col h-full shadow-sm">
             <div class="p-6 border-b border-slate-200 dark:border-stone-800 flex items-center gap-3">
                 <div class="bg-primary p-2 rounded-lg text-white">
-                    <span class="material-symbols-outlined block">admin_panel_settings</span>
+                    <span class="material-symbols-outlined block">account_balance</span>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold leading-tight">نظام الإدارة</h1>
+                    <h1 class="text-lg font-bold leading-tight">لجنة الخدمات</h1>
                     <p class="text-xs text-slate-500 dark:text-slate-400">لوحة تحكم المسير</p>
                 </div>
             </div>
@@ -72,8 +73,12 @@
                     <span>دراسة الطلبات</span>
                 </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structure/payments">
-                    <span class="material-symbols-outlined">account_balance_wallet</span>
-                    <span>المدفوعات</span>
+                    <span class="material-symbols-outlined">payments</span>
+                    <span>إدارة عمليات الدفع</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structure/virements">
+                    <span class="material-symbols-outlined">list_alt</span>
+                    <span>التحويلات البنكية</span>
                 </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/committeeDashboard/viewOperations">
                     <span class="material-symbols-outlined">history</span>
@@ -91,6 +96,7 @@
                 </div>
             </nav>
         </aside>
+
 
 
 

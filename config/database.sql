@@ -89,3 +89,16 @@ CREATE TABLE IF NOT EXISTS installments (
     paid_at TIMESTAMP NULL,
     FOREIGN KEY (payment_id) REFERENCES payments(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS virements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    beneficiary_count INT NOT NULL,
+    total_amount DECIMAL(15, 2) NOT NULL,
+    bank_fees DECIMAL(15, 2) DEFAULT 0,
+    transfer_date DATE NOT NULL,
+    beneficiary_ids TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE payments ADD COLUMN IF NOT EXISTS virement_id INT DEFAULT NULL;
+ALTER TABLE payments ADD FOREIGN KEY (virement_id) REFERENCES virements(id) ON DELETE SET NULL;

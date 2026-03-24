@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>الاقتطاعات الشهرية</title>
+    <title>القوائم الاسمية للتحويلات</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;family=Noto+Sans+Arabic:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -33,9 +33,6 @@
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar Navigation -->
-
-
-
 
         <aside class="w-72 bg-white dark:bg-stone-900 border-l border-slate-200 dark:border-stone-800 flex flex-col h-full shadow-sm">
             <div class="p-6 border-b border-slate-200 dark:border-stone-800 flex items-center gap-3">
@@ -76,7 +73,7 @@
                     <span class="material-symbols-outlined">payments</span>
                     <span>إدارة عمليات الدفع</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structure/virements">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structure/virements">
                     <span class="material-symbols-outlined">list_alt</span>
                     <span>التحويلات البنكية</span>
                 </a>
@@ -84,7 +81,7 @@
                     <span class="material-symbols-outlined">history</span>
                     <span>سجل العمليات</span>
                 </a>
-                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structureDashboard/deductions">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-700 dark:text-slate-300" href="<?= URLROOT; ?>/structureDashboard/deductions">
                     <span class="material-symbols-outlined">receipt_long</span>
                     <span>الاقتطاعات الشهرية</span>
                 </a>
@@ -98,19 +95,9 @@
         </aside>
 
 
-
-
-
-        <!-- Main Content Area -->
         <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
             <header class="h-20 bg-white dark:bg-stone-900 border-b border-slate-200 dark:border-stone-800 px-8 flex items-center justify-between">
-                <h2 class="text-xl font-bold">اقتطاعات شهر: <?= $_GET['month'] ?? date('Y-m'); ?></h2>
-                <div class="flex gap-2">
-                    <form action="" method="GET" class="flex gap-2">
-                        <input type="month" name="month" value="<?= $_GET['month'] ?? date('Y-m'); ?>" class="rounded-xl border-slate-200 text-sm focus:ring-primary py-2 px-4">
-                        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-xl font-bold hover:bg-primary/90 text-sm">عرض</button>
-                    </form>
-                </div>
+                <h2 class="text-xl font-bold">سجل القوائم الاسمية (Virements)</h2>
             </header>
 
             <div class="flex-1 overflow-y-auto p-8 space-y-8">
@@ -119,33 +106,27 @@
                         <table class="w-full text-right">
                             <thead class="bg-slate-50 dark:bg-stone-800/50 text-slate-500 text-sm">
                                 <tr>
-                                    <th class="px-6 py-4 font-semibold">الموظف</th>
-                                    <th class="px-6 py-4 font-semibold">رقم الضمان</th>
-                                    <th class="px-6 py-4 font-semibold">المبلغ (دج)</th>
-                                    <th class="px-6 py-4 font-semibold">الحالة</th>
+                                    <th class="px-6 py-4 font-semibold">رقم القائمة</th>
+                                    <th class="px-6 py-4 font-semibold">عدد المستفيدين</th>
+                                    <th class="px-6 py-4 font-semibold">المبلغ الإجمالي (دج)</th>
+                                    <th class="px-6 py-4 font-semibold">الرسوم</th>
+                                    <th class="px-6 py-4 font-semibold">التاريخ</th>
                                     <th class="px-6 py-4 font-semibold">الإجراءات</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-stone-800">
-                                <?php foreach($installments as $i): ?>
+                                <?php foreach($virements as $v): ?>
                                 <tr class="hover:bg-slate-50/50 dark:hover:bg-stone-800/30 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-sm">#VIR-<?= $v['id']; ?></td>
+                                    <td class="px-6 py-4 text-sm"><?= $v['beneficiary_count']; ?> موظف</td>
+                                    <td class="px-6 py-4 font-bold text-sm"><?= number_format($v['total_amount'], 2); ?></td>
+                                    <td class="px-6 py-4 text-sm text-slate-500"><?= number_format($v['bank_fees'], 2); ?></td>
+                                    <td class="px-6 py-4 text-sm text-slate-400"><?= $v['transfer_date']; ?></td>
                                     <td class="px-6 py-4">
-                                        <p class="font-bold text-sm"><?= $i['nom_ar']; ?></p>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-mono text-slate-500"><?= $i['ssn']; ?></td>
-                                    <td class="px-6 py-4 font-bold text-sm"><?= number_format($i['amount'], 2); ?></td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold
-                                            <?= $i['is_paid'] ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'; ?>">
-                                            <?= $i['is_paid'] ? 'تم الاقتطاع' : 'منتظر'; ?>
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php if(!$i['is_paid']): ?>
-                                        <a href="<?= URLROOT; ?>/structureDashboard/confirmDeduction?id=<?= $i['id']; ?>" class="bg-primary/10 text-primary px-3 py-1 rounded-lg text-xs font-bold hover:bg-primary hover:text-white transition-colors">
-                                            تأكيد الاسترجاع
+                                        <a href="<?= URLROOT; ?>/structure/printVirement?id=<?= $v['id']; ?>" target="_blank" class="flex items-center gap-2 text-primary hover:underline font-bold text-sm">
+                                            <span class="material-symbols-outlined text-sm">print</span>
+                                            <span>طباعة القائمة</span>
                                         </a>
-                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
